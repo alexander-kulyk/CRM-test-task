@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import {
   arrow,
   autoUpdate,
+  flip,
   FloatingArrow,
   FloatingPortal,
   offset,
@@ -55,6 +56,7 @@ export const EventPopup: React.FC<EventPopupProps> = ({
     elements: { reference: referenceEl },
     middleware: [
       offset(ARROW_HEIGHT + POPOVER_GAP),
+      flip({ fallbackPlacements: ['right', 'left'], padding: 8 }),
       shift({ padding: 8 }),
       arrow({ element: arrowEl }),
     ],

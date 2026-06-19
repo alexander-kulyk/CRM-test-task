@@ -9,7 +9,6 @@ export const Popover = styled.div`
   gap: ${({ theme }) => theme.spacing.lg};
   max-width: calc(100vw - 32px);
   padding: ${({ theme }) => theme.spacing.xl};
-  transform-origin: top center;
   width: 320px;
   z-index: 50;
 `
