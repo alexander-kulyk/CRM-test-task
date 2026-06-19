@@ -1,18 +1,5 @@
 import type React from 'react';
-import { useCallback, useState } from 'react';
-import {
-  arrow,
-  autoUpdate,
-  flip,
-  FloatingArrow,
-  FloatingPortal,
-  offset,
-  shift,
-  useDismiss,
-  useFloating,
-  useInteractions,
-  useTransitionStyles,
-} from '@floating-ui/react';
+import { FloatingArrow, FloatingPortal } from '@floating-ui/react';
 import { Controller } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 import {
@@ -21,12 +8,9 @@ import {
   Input,
   TimePicker,
 } from '../../../../shared/components';
-import { useEventForm } from './hooks';
+import { ARROW_HEIGHT, useEventForm, usePopoverFloating } from './hooks';
 import * as S from './styled';
 import type { EventPopupProps } from './types';
-
-const ARROW_HEIGHT = 8;
-const POPOVER_GAP = 8;
 
 export const EventPopup: React.FC<EventPopupProps> = ({
   isOpen,
@@ -41,41 +25,20 @@ export const EventPopup: React.FC<EventPopupProps> = ({
   onDelete,
 }) => {
   const theme = useTheme();
-  const [arrowEl, setArrowEl] = useState<SVGSVGElement | null>(null);
 
-  const { refs, floatingStyles, context } = useFloating({
-    open: isOpen,
-    onOpenChange: (open) => {
-      if (!open) {
-        onClose();
-      }
-    },
-    placement: 'bottom',
-    transform: false,
-    whileElementsMounted: autoUpdate,
-    elements: { reference: referenceEl },
-    middleware: [
-      offset(ARROW_HEIGHT + POPOVER_GAP),
-      flip({ fallbackPlacements: ['right', 'left'], padding: 8 }),
-      shift({ padding: 8 }),
-      arrow({ element: arrowEl }),
-    ],
+  const {
+    setFloatingRef,
+    floatingStyles,
+    transitionStyles,
+    context,
+    setArrowEl,
+    isMounted,
+    getFloatingProps,
+  } = usePopoverFloating({
+    isOpen,
+    referenceEl,
+    onClose,
   });
-
-  const dismiss = useDismiss(context);
-  const { getFloatingProps } = useInteractions([dismiss]);
-
-  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
-    duration: 180,
-    initial: { opacity: 0, transform: 'scale(0.96)' },
-  });
-
-  const setFloatingRef = useCallback(
-    (node: HTMLElement | null): void => {
-      refs.setFloating(node);
-    },
-    [refs],
-  );
 
   const {
     control,
