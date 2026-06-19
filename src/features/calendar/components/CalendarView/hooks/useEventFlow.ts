@@ -10,14 +10,15 @@ import {
   mapFormValuesToCreateEvent,
   mapFormValuesToEventChanges,
   type EventFormValues,
-  type EventModalMode,
+  type EventPopupMode,
 } from '../../EventModal';
 
 interface IEventModalState {
   isOpen: boolean;
-  mode: EventModalMode;
+  mode: EventPopupMode;
   eventId?: string;
   initialValues: EventFormValues;
+  anchorEl: HTMLElement | null;
 }
 
 interface UseEventFlowParams {
@@ -29,6 +30,7 @@ interface UseEventFlowParams {
     changes: ReturnType<typeof mapFormValuesToEventChanges>,
   ) => Promise<boolean>;
   moveEvent: (id: string, start: string, end?: string) => Promise<boolean>;
+  deleteEvent: (id: string) => Promise<boolean>;
 }
 
 interface UseEventFlowReturn {
@@ -38,6 +40,7 @@ interface UseEventFlowReturn {
   handleEventClick: (info: EventClickArg) => void;
   handleApply: (values: EventFormValues) => Promise<void>;
   handleSave: (eventId: string, values: EventFormValues) => Promise<void>;
+  handleDelete: (eventId: string) => Promise<void>;
   handleEventDrop: (dropInfo: EventDropArg) => Promise<void>;
 }
 
@@ -45,12 +48,14 @@ const CLOSED_MODAL_STATE: IEventModalState = {
   isOpen: false,
   mode: 'create',
   initialValues: EMPTY_EVENT_FORM_VALUES,
+  anchorEl: null,
 };
 
 export const useEventFlow = ({
   createEvent,
   updateEvent,
   moveEvent,
+  deleteEvent,
 }: UseEventFlowParams): UseEventFlowReturn => {
   const [modalState, setModalState] =
     useState<IEventModalState>(CLOSED_MODAL_STATE);
@@ -68,6 +73,7 @@ export const useEventFlow = ({
     setModalState({
       isOpen: true,
       mode: 'create',
+      anchorEl: info.dayEl,
       initialValues: {
         title: '',
         date: clickedDate,
@@ -91,6 +97,7 @@ export const useEventFlow = ({
       isOpen: true,
       mode: 'edit',
       eventId: info.event.id,
+      anchorEl: info.el,
       initialValues: {
         title: info.event.title,
         date: eventStart,
@@ -124,6 +131,17 @@ export const useEventFlow = ({
     [closeModal, updateEvent],
   );
 
+  const handleDelete = useCallback(
+    async (eventId: string): Promise<void> => {
+      const isDeleted = await deleteEvent(eventId);
+
+      if (isDeleted) {
+        closeModal();
+      }
+    },
+    [closeModal, deleteEvent],
+  );
+
   const handleEventDrop = useCallback(
     async (dropInfo: EventDropArg): Promise<void> => {
       const success = await moveEvent(
@@ -146,6 +164,7 @@ export const useEventFlow = ({
     handleEventClick,
     handleApply,
     handleSave,
+    handleDelete,
     handleEventDrop,
   };
 };

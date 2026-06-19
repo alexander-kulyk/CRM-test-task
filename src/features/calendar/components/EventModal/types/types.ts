@@ -1,6 +1,6 @@
 import type { Dayjs } from 'dayjs'
 
-export type EventModalMode = 'create' | 'edit'
+export type EventPopupMode = 'create' | 'edit'
 
 export interface EventFormValues {
   title: string
@@ -9,13 +9,15 @@ export interface EventFormValues {
   color: string
 }
 
-export interface EventModalProps {
+export interface EventPopupProps {
   isOpen: boolean
-  mode: EventModalMode
+  mode: EventPopupMode
   initialValues: EventFormValues
   eventId?: string
   isProcessing: boolean
+  referenceEl: HTMLElement | null
   onClose: () => void
   onApply: (values: EventFormValues) => Promise<void>
   onSave: (eventId: string, values: EventFormValues) => Promise<void>
+  onDelete: (eventId: string) => Promise<void>
 }

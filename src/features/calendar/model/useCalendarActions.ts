@@ -10,7 +10,7 @@ export interface UseCalendarActionsResult {
     id: string,
     changes: Partial<CalendarEventEntity>,
   ) => Promise<boolean>;
-  deleteEvent: (id: string) => Promise<void>;
+  deleteEvent: (id: string) => Promise<boolean>;
   moveEvent: (id: string, start: string, end?: string) => Promise<boolean>;
 }
 
@@ -58,14 +58,16 @@ export const useCalendarActions = (): UseCalendarActionsResult => {
   );
 
   const deleteEvent = useCallback(
-    async (id: string): Promise<void> => {
+    async (id: string): Promise<boolean> => {
       setIsProcessing(true);
 
       try {
         await calendarRepository.deleteEvent(id);
+        return true;
       } catch (error) {
         console.log(error);
         addError('Failed to delete calendar event.');
+        return false;
       } finally {
         setIsProcessing(false);
       }

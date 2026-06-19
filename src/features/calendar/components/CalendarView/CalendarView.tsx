@@ -11,13 +11,13 @@ import {
 import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../constants';
 import { useCalendarActions, useCalendarEvents } from '../../model';
 import { mapEntityToEventInput } from '../../utils';
-import { EventModal } from '../EventModal';
+import { EventPopup } from '../EventModal';
 import { useEventFlow } from './hooks';
 import * as S from './styled';
 
 export const CalendarView: React.FC = () => {
   const events = useCalendarEvents();
-  const { isProcessing, createEvent, updateEvent, moveEvent } =
+  const { isProcessing, createEvent, updateEvent, moveEvent, deleteEvent } =
     useCalendarActions();
 
   const {
@@ -27,11 +27,13 @@ export const CalendarView: React.FC = () => {
     handleEventClick,
     handleApply,
     handleSave,
+    handleDelete,
     handleEventDrop,
   } = useEventFlow({
     createEvent,
     updateEvent,
     moveEvent,
+    deleteEvent,
   });
 
   const calendarEvents = useMemo<EventInput[]>(
@@ -66,15 +68,17 @@ export const CalendarView: React.FC = () => {
         />
       </S.CalendarPanel>
 
-      <EventModal
+      <EventPopup
         isOpen={modalState.isOpen}
         mode={modalState.mode}
         eventId={modalState.eventId}
         initialValues={modalState.initialValues}
+        referenceEl={modalState.anchorEl}
         isProcessing={isProcessing}
         onClose={closeModal}
         onApply={handleApply}
         onSave={handleSave}
+        onDelete={handleDelete}
       />
     </PageStack>
   );
