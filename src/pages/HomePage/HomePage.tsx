@@ -1,5 +1,6 @@
 import type React from 'react'
 import { LeadForm } from '../../features/lead-form'
+import { ErrorMessage } from '../../shared/components/ErrorMessage'
 import {
   DashboardGrid,
   Eyebrow,
@@ -13,31 +14,35 @@ import { PIPELINE_STATS } from './constants'
 import * as S from './styled'
 
 export const HomePage: React.FC = () => (
-  <PageStack>
-    <PageHeader>
-      <Eyebrow>CRM workspace</Eyebrow>
-      <h1>Lead dashboard</h1>
-      <p>Today&apos;s lead activity and follow-up status.</p>
-    </PageHeader>
+  <>
+    <ErrorMessage />
 
-    <DashboardGrid>
-      <Panel>
-        <SectionHeading>
-          <h2>Pipeline snapshot</h2>
-          <StatusPill>Demo data</StatusPill>
-        </SectionHeading>
+    <PageStack>
+      <PageHeader>
+        <Eyebrow>CRM workspace</Eyebrow>
+        <h1>Lead dashboard</h1>
+        <p>Today&apos;s lead activity and follow-up status.</p>
+      </PageHeader>
 
-        <S.StatsGrid>
-          {PIPELINE_STATS.map((stat) => (
-            <S.StatItem key={stat.label}>
-              <S.StatValue>{stat.value}</S.StatValue>
-              <S.StatLabel>{stat.label}</S.StatLabel>
-            </S.StatItem>
-          ))}
-        </S.StatsGrid>
-      </Panel>
+      <DashboardGrid>
+        <Panel>
+          <SectionHeading>
+            <h2>Pipeline snapshot</h2>
+            <StatusPill>Demo data</StatusPill>
+          </SectionHeading>
 
-      <LeadForm />
-    </DashboardGrid>
-  </PageStack>
+          <S.StatsGrid>
+            {PIPELINE_STATS.map((stat) => (
+              <S.StatItem key={stat.label}>
+                <S.StatValue>{stat.value}</S.StatValue>
+                <S.StatLabel>{stat.label}</S.StatLabel>
+              </S.StatItem>
+            ))}
+          </S.StatsGrid>
+        </Panel>
+
+        <LeadForm />
+      </DashboardGrid>
+    </PageStack>
+  </>
 )

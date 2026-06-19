@@ -11,20 +11,15 @@ import {
 import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../constants';
 import { useCalendarEvents } from '../../model';
 import { mapEntityToEventInput } from '../../utils';
-import { CalendarPageLoader } from '../CalendarPageLoader';
 import * as S from './styled';
 
 export const CalendarView: React.FC = () => {
   const events = useCalendarEvents();
 
   const calendarEvents = useMemo<EventInput[]>(
-    () => (events ? events.map(mapEntityToEventInput) : []),
+    () => events.map(mapEntityToEventInput),
     [events],
   );
-
-  if (!events) {
-    return <CalendarPageLoader label='Loading events...' />;
-  }
 
   return (
     <PageStack>

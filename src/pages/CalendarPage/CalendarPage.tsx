@@ -4,20 +4,23 @@ import {
   CalendarView,
   useInitDatabase,
 } from '../../features/calendar'
-import * as S from './styled'
+import { ErrorBoundary } from '../../shared/components/ErrorBoundary'
+import { ErrorMessage } from '../../shared/components/ErrorMessage'
 
 export const CalendarPage: React.FC = () => {
-  const { isInitializing, error } = useInitDatabase()
+  const { isInitializing } = useInitDatabase()
 
   if (isInitializing) {
     return <CalendarPageLoader />
   }
 
-  if (error) {
-    return (
-      <S.ErrorMessage>Failed to initialize calendar database.</S.ErrorMessage>
-    )
-  }
+  return (
+    <>
+      <ErrorMessage />
 
-  return <CalendarView />
+      <ErrorBoundary>
+        <CalendarView />
+      </ErrorBoundary>
+    </>
+  )
 }
