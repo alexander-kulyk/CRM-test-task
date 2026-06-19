@@ -26,3 +26,5 @@ dist-ssr
 # Local agent/tooling directories
 .agents/
 .claude/
+AGENTS.md
+CLAUDE.md

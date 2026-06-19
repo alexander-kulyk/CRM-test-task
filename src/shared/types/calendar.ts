@@ -1,4 +1,4 @@
-export type CrmCalendarEvent = {
+export interface ICrmCalendarEvent {
   id: string
   title: string
   start: string
