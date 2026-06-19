@@ -7,10 +7,10 @@ import {
   PageHeader,
   PageStack,
   SectionHeading,
-} from '../../../../shared/components/Page';
-import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../constants';
+} from '../../../../shared/components';
+import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../config';
+import { mapEntityToEventInput } from '../../lib';
 import { useCalendarActions, useCalendarEvents } from '../../model';
-import { mapEntityToEventInput } from '../../utils';
 import { EventPopup } from '../EventModal';
 import { useEventFlow } from './hooks';
 import * as S from './styled';

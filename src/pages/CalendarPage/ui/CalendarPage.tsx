@@ -3,9 +3,8 @@ import {
   CalendarPageLoader,
   CalendarView,
   useInitDatabase,
-} from '../../features/calendar'
-import { ErrorBoundary } from '../../shared/components/ErrorBoundary'
-import { ErrorMessage } from '../../shared/components/ErrorMessage'
+} from '../../../features/calendar'
+import { ErrorBoundary, ErrorMessage } from '../../../shared/components'
 
 export const CalendarPage: React.FC = () => {
   const { isInitializing } = useInitDatabase()

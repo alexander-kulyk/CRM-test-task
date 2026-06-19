@@ -10,7 +10,7 @@ import {
   DEFAULT_LEAD_VALUES,
   type LeadFormValues,
   leadFormSchema,
-} from '../constants'
+} from '../config'
 
 interface IUseLeadFormReturn {
   values: {

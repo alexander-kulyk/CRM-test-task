@@ -1,16 +1,16 @@
 import type React from 'react'
-import { LeadForm } from '../../features/lead-form'
-import { ErrorMessage } from '../../shared/components/ErrorMessage'
+import { LeadForm } from '../../../features/lead-form'
 import {
   DashboardGrid,
+  ErrorMessage,
   Eyebrow,
   PageHeader,
   PageStack,
   Panel,
   SectionHeading,
   StatusPill,
-} from '../../shared/components/Page'
-import { PIPELINE_STATS } from './constants'
+} from '../../../shared/components'
+import { PIPELINE_STATS } from '../config'
 import * as S from './styled'
 
 export const HomePage: React.FC = () => (

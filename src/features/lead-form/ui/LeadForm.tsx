@@ -1,7 +1,7 @@
 import type React from 'react'
-import { SectionHeading, StatusPill } from '../../shared/components/Page'
-import { LEAD_STATUS_OPTIONS } from './constants'
-import { useLeadForm } from './hooks'
+import { SectionHeading, StatusPill } from '../../../shared/components'
+import { LEAD_STATUS_OPTIONS } from '../config'
+import { useLeadForm } from '../model'
 import * as S from './styled'
 
 export const LeadForm: React.FC = () => {

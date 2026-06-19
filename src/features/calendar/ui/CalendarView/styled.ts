@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Panel } from '../../../../shared/components/Page'
+import { Panel } from '../../../../shared/components'
 
 export const CalendarPanel = styled(Panel)`
   overflow-x: auto;

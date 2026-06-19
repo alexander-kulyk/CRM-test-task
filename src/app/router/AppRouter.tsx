@@ -1,7 +1,7 @@
 import type React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { CalendarPage, HomePage } from '../../pages';
-import { AppLayout } from '../../shared';
+import { AppLayout } from '../../shared/components';
 
 export const AppRouter: React.FC = () => (
   <BrowserRouter>

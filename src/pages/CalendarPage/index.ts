@@ -1,1 +1,1 @@
-export * from './CalendarPage'
+export * from './ui/CalendarPage'
