@@ -1,34 +1,17 @@
-import type React from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
-import { ThemeProvider } from 'styled-components'
-import { CalendarPage } from '../pages/CalendarPage'
-import { HomePage } from '../pages/HomePage'
-import { AppLayout } from '../shared/components/AppLayout'
-import { ErrorBoundary } from '../shared/components/ErrorBoundary'
-import { ErrorProvider } from '../shared/context'
-import { AppProviders } from './providers'
-import { GlobalStyle } from './styles/GlobalStyle'
-import { theme } from './styles/theme'
+import type React from 'react';
+import { ErrorBoundary } from '../shared/components/ErrorBoundary';
+import { ErrorProvider } from '../shared/context';
+import { AppProviders } from './providers';
+import { AppRouter } from './router';
 
 const App: React.FC = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <AppProviders>
-      <ErrorProvider>
-        <ErrorBoundary>
-          <BrowserRouter>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route index element={<HomePage />} />
-                <Route path="calendar" element={<CalendarPage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </ErrorBoundary>
-      </ErrorProvider>
-    </AppProviders>
-  </ThemeProvider>
-)
+  <AppProviders>
+    <ErrorProvider>
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
+    </ErrorProvider>
+  </AppProviders>
+);
 
-export default App
+export default App;
