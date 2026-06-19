@@ -6,25 +6,28 @@ import { HomePage } from '../pages/HomePage'
 import { AppLayout } from '../shared/components/AppLayout'
 import { ErrorBoundary } from '../shared/components/ErrorBoundary'
 import { ErrorProvider } from '../shared/context'
+import { AppProviders } from './providers'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { theme } from './styles/theme'
 
 const App: React.FC = () => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <ErrorProvider>
-      <ErrorBoundary>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="calendar" element={<CalendarPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </ErrorBoundary>
-    </ErrorProvider>
+    <AppProviders>
+      <ErrorProvider>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="calendar" element={<CalendarPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </ErrorProvider>
+    </AppProviders>
   </ThemeProvider>
 )
 

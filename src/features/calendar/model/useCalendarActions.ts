@@ -5,11 +5,11 @@ import type { CalendarEventEntity } from './types';
 
 export interface UseCalendarActionsResult {
   isProcessing: boolean;
-  createEvent: (event: CalendarEventEntity) => Promise<void>;
+  createEvent: (event: CalendarEventEntity) => Promise<boolean>;
   updateEvent: (
     id: string,
     changes: Partial<CalendarEventEntity>,
-  ) => Promise<void>;
+  ) => Promise<boolean>;
   deleteEvent: (id: string) => Promise<void>;
   moveEvent: (id: string, start: string, end?: string) => Promise<void>;
 }
@@ -19,14 +19,16 @@ export const useCalendarActions = (): UseCalendarActionsResult => {
   const { addError } = useErrorContext();
 
   const createEvent = useCallback(
-    async (event: CalendarEventEntity): Promise<void> => {
+    async (event: CalendarEventEntity): Promise<boolean> => {
       setIsProcessing(true);
 
       try {
         await calendarRepository.createEvent(event);
+        return true;
       } catch (error) {
         console.log(error);
         addError('Failed to create calendar event.');
+        return false;
       } finally {
         setIsProcessing(false);
       }
@@ -38,14 +40,16 @@ export const useCalendarActions = (): UseCalendarActionsResult => {
     async (
       id: string,
       changes: Partial<CalendarEventEntity>,
-    ): Promise<void> => {
+    ): Promise<boolean> => {
       setIsProcessing(true);
 
       try {
         await calendarRepository.updateEvent(id, changes);
+        return true;
       } catch (error) {
         console.log(error);
         addError('Failed to update calendar event.');
+        return false;
       } finally {
         setIsProcessing(false);
       }

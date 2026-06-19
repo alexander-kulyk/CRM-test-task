@@ -9,12 +9,27 @@ import {
   SectionHeading,
 } from '../../../../shared/components/Page';
 import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../constants';
-import { useCalendarEvents } from '../../model';
+import { useCalendarActions, useCalendarEvents } from '../../model';
 import { mapEntityToEventInput } from '../../utils';
+import { EventModal } from '../EventModal';
+import { useEventFlow } from './hooks';
 import * as S from './styled';
 
 export const CalendarView: React.FC = () => {
   const events = useCalendarEvents();
+  const { isProcessing, createEvent, updateEvent } = useCalendarActions();
+
+  const {
+    modalState,
+    closeModal,
+    handleDateClick,
+    handleEventClick,
+    handleApply,
+    handleSave,
+  } = useEventFlow({
+    createEvent,
+    updateEvent,
+  });
 
   const calendarEvents = useMemo<EventInput[]>(
     () => events.map(mapEntityToEventInput),
@@ -41,8 +56,21 @@ export const CalendarView: React.FC = () => {
           events={calendarEvents}
           height='auto'
           nowIndicator
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
         />
       </S.CalendarPanel>
+
+      <EventModal
+        isOpen={modalState.isOpen}
+        mode={modalState.mode}
+        eventId={modalState.eventId}
+        initialValues={modalState.initialValues}
+        isProcessing={isProcessing}
+        onClose={closeModal}
+        onApply={handleApply}
+        onSave={handleSave}
+      />
     </PageStack>
   );
 };
