@@ -11,7 +11,7 @@ export interface UseCalendarActionsResult {
     changes: Partial<CalendarEventEntity>,
   ) => Promise<boolean>;
   deleteEvent: (id: string) => Promise<void>;
-  moveEvent: (id: string, start: string, end?: string) => Promise<void>;
+  moveEvent: (id: string, start: string, end?: string) => Promise<boolean>;
 }
 
 export const useCalendarActions = (): UseCalendarActionsResult => {
@@ -74,14 +74,16 @@ export const useCalendarActions = (): UseCalendarActionsResult => {
   );
 
   const moveEvent = useCallback(
-    async (id: string, start: string, end?: string): Promise<void> => {
+    async (id: string, start: string, end?: string): Promise<boolean> => {
       setIsProcessing(true);
 
       try {
         await calendarRepository.moveEvent(id, start, end);
+        return true;
       } catch (error) {
         console.log(error);
         addError('Failed to move calendar event.');
+        return false;
       } finally {
         setIsProcessing(false);
       }

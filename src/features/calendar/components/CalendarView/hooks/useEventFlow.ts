@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import type { EventClickArg } from '@fullcalendar/core';
+import type { EventClickArg, EventDropArg } from '@fullcalendar/core';
 import type { DateClickArg } from '@fullcalendar/interaction';
 import dayjs from 'dayjs';
 import {
@@ -28,6 +28,7 @@ interface UseEventFlowParams {
     eventId: string,
     changes: ReturnType<typeof mapFormValuesToEventChanges>,
   ) => Promise<boolean>;
+  moveEvent: (id: string, start: string, end?: string) => Promise<boolean>;
 }
 
 interface UseEventFlowReturn {
@@ -37,6 +38,7 @@ interface UseEventFlowReturn {
   handleEventClick: (info: EventClickArg) => void;
   handleApply: (values: EventFormValues) => Promise<void>;
   handleSave: (eventId: string, values: EventFormValues) => Promise<void>;
+  handleEventDrop: (dropInfo: EventDropArg) => Promise<void>;
 }
 
 const CLOSED_MODAL_STATE: IEventModalState = {
@@ -48,6 +50,7 @@ const CLOSED_MODAL_STATE: IEventModalState = {
 export const useEventFlow = ({
   createEvent,
   updateEvent,
+  moveEvent,
 }: UseEventFlowParams): UseEventFlowReturn => {
   const [modalState, setModalState] =
     useState<IEventModalState>(CLOSED_MODAL_STATE);
@@ -121,6 +124,21 @@ export const useEventFlow = ({
     [closeModal, updateEvent],
   );
 
+  const handleEventDrop = useCallback(
+    async (dropInfo: EventDropArg): Promise<void> => {
+      const success = await moveEvent(
+        dropInfo.event.id,
+        dropInfo.event.startStr,
+        dropInfo.event.endStr || undefined,
+      );
+
+      if (!success) {
+        dropInfo.revert();
+      }
+    },
+    [moveEvent],
+  );
+
   return {
     modalState,
     closeModal,
@@ -128,5 +146,6 @@ export const useEventFlow = ({
     handleEventClick,
     handleApply,
     handleSave,
+    handleEventDrop,
   };
 };

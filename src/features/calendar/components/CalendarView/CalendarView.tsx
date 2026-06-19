@@ -17,7 +17,8 @@ import * as S from './styled';
 
 export const CalendarView: React.FC = () => {
   const events = useCalendarEvents();
-  const { isProcessing, createEvent, updateEvent } = useCalendarActions();
+  const { isProcessing, createEvent, updateEvent, moveEvent } =
+    useCalendarActions();
 
   const {
     modalState,
@@ -26,9 +27,11 @@ export const CalendarView: React.FC = () => {
     handleEventClick,
     handleApply,
     handleSave,
+    handleEventDrop,
   } = useEventFlow({
     createEvent,
     updateEvent,
+    moveEvent,
   });
 
   const calendarEvents = useMemo<EventInput[]>(
@@ -58,6 +61,8 @@ export const CalendarView: React.FC = () => {
           nowIndicator
           dateClick={handleDateClick}
           eventClick={handleEventClick}
+          editable={true}
+          eventDrop={handleEventDrop}
         />
       </S.CalendarPanel>
 

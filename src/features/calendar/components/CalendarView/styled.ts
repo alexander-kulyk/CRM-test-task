@@ -64,8 +64,14 @@ export const CalendarPanel = styled(Panel)`
   .fc-event {
     border-radius: ${({ theme }) => theme.radii.sm};
     box-shadow: 0 4px 10px rgba(59, 134, 255, 0.22);
+    cursor: grab;
     font-size: ${({ theme }) => theme.typography.sizes.sm};
     font-weight: ${({ theme }) => theme.typography.weights.medium};
     padding: 4px 8px;
+  }
+
+  .fc-event.fc-event-dragging,
+  .fc-event:active {
+    cursor: grabbing;
   }
 `
