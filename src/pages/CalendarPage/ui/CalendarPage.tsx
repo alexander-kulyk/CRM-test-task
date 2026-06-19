@@ -1,4 +1,6 @@
+//core
 import type React from 'react'
+//components
 import {
   CalendarPageLoader,
   CalendarView,

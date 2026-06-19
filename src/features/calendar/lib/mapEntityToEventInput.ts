@@ -1,8 +1,10 @@
+//core
 import type { EventInput } from '@fullcalendar/core';
-import type { CalendarEventEntity } from '../model';
+//other
+import type { ICalendarEventEntity } from '../model';
 
 export const mapEntityToEventInput = (
-  entity: CalendarEventEntity,
+  entity: ICalendarEventEntity,
 ): EventInput => ({
   id: entity.id,
   title: entity.title,

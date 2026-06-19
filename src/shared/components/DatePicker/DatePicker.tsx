@@ -1,16 +1,18 @@
-import type React from 'react'
+//core
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker'
 import type { Dayjs } from 'dayjs'
+import type React from 'react'
+//other
 import * as S from './styled'
 
-export interface DatePickerProps {
+export interface IDatePickerProps {
   label: string
   value: Dayjs | null
   onChange: (value: Dayjs | null) => void
   error?: string
 }
 
-export const DatePicker: React.FC<DatePickerProps> = ({
+export const DatePicker: React.FC<IDatePickerProps> = ({
   label,
   value,
   onChange,

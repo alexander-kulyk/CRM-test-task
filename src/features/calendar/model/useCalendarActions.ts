@@ -1,25 +1,27 @@
+//core
 import { useCallback, useState } from 'react';
+//other
 import { useErrorContext } from '../../../shared/context';
 import { calendarRepository } from './calendarRepository';
-import type { CalendarEventEntity } from './types';
+import type { ICalendarEventEntity } from './types';
 
-export interface UseCalendarActionsResult {
+export interface IUseCalendarActionsResult {
   isProcessing: boolean;
-  createEvent: (event: CalendarEventEntity) => Promise<boolean>;
+  createEvent: (event: ICalendarEventEntity) => Promise<boolean>;
   updateEvent: (
     id: string,
-    changes: Partial<CalendarEventEntity>,
+    changes: Partial<ICalendarEventEntity>,
   ) => Promise<boolean>;
   deleteEvent: (id: string) => Promise<boolean>;
   moveEvent: (id: string, start: string, end?: string) => Promise<boolean>;
 }
 
-export const useCalendarActions = (): UseCalendarActionsResult => {
+export const useCalendarActions = (): IUseCalendarActionsResult => {
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const { addError } = useErrorContext();
 
   const createEvent = useCallback(
-    async (event: CalendarEventEntity): Promise<boolean> => {
+    async (event: ICalendarEventEntity): Promise<boolean> => {
       setIsProcessing(true);
 
       try {
@@ -39,7 +41,7 @@ export const useCalendarActions = (): UseCalendarActionsResult => {
   const updateEvent = useCallback(
     async (
       id: string,
-      changes: Partial<CalendarEventEntity>,
+      changes: Partial<ICalendarEventEntity>,
     ): Promise<boolean> => {
       setIsProcessing(true);
 

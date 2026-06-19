@@ -1,4 +1,6 @@
+//core
 import type React from 'react'
+//other
 import * as S from './styled'
 
 interface ICalendarPageLoaderProps {

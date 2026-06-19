@@ -1,6 +1,8 @@
+//core
 import dayjs from 'dayjs'
 import { z } from 'zod'
-import type { EventFormValues } from '../types'
+//other
+import type { IEventFormValues } from '../types'
 
 export const eventFormSchema = z.object({
   title: z
@@ -8,11 +10,11 @@ export const eventFormSchema = z.object({
     .trim()
     .min(1, 'Event name is required')
     .max(30, 'Maximum number of characters is 30'),
-  date: z.custom<EventFormValues['date']>(
+  date: z.custom<IEventFormValues['date']>(
     (value) => dayjs.isDayjs(value) && value.isValid(),
     { message: 'Date is required' },
   ),
-  time: z.custom<EventFormValues['time']>(
+  time: z.custom<IEventFormValues['time']>(
     (value) => dayjs.isDayjs(value) && value.isValid(),
     { message: 'Time is required' },
   ),

@@ -1,4 +1,6 @@
+//core
 import { Component, type ErrorInfo, type ReactNode } from 'react'
+//other
 import * as S from './styled'
 
 interface IErrorBoundaryProps {

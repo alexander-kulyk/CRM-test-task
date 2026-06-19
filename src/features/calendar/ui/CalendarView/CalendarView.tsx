@@ -1,17 +1,20 @@
-import type React from 'react';
-import { useMemo } from 'react';
+//core
 import type { EventInput } from '@fullcalendar/core';
 import FullCalendar from '@fullcalendar/react';
+import { useMemo } from 'react';
+import type React from 'react';
+//components
 import {
-  Eyebrow,
+  SectionHeading,
   PageHeader,
   PageStack,
-  SectionHeading,
+  Eyebrow,
 } from '../../../../shared/components';
-import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../config';
-import { mapEntityToEventInput } from '../../lib';
-import { useCalendarActions, useCalendarEvents } from '../../model';
 import { EventPopup } from '../EventModal';
+//other
+import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../config';
+import { useCalendarActions, useCalendarEvents } from '../../model';
+import { mapEntityToEventInput } from '../../lib';
 import { useEventFlow } from './hooks';
 import * as S from './styled';
 

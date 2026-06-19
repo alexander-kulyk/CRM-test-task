@@ -1,5 +1,8 @@
+//core
 import type React from 'react';
+//components
 import { ErrorBoundary } from '../shared/components';
+//other
 import { ErrorProvider } from '../shared/context';
 import { AppProviders } from './providers';
 import { AppRouter } from './router';

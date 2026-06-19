@@ -1,15 +1,18 @@
+//core
 import type React from 'react'
+//components
 import { LeadForm } from '../../../features/lead-form'
 import {
+  SectionHeading,
   DashboardGrid,
   ErrorMessage,
-  Eyebrow,
+  StatusPill,
   PageHeader,
   PageStack,
+  Eyebrow,
   Panel,
-  SectionHeading,
-  StatusPill,
 } from '../../../shared/components'
+//other
 import { PIPELINE_STATS } from '../config'
 import * as S from './styled'
 

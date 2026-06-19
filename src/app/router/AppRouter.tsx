@@ -1,5 +1,7 @@
+//core
 import type React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+//components
 import { CalendarPage, HomePage } from '../../pages';
 import { AppLayout } from '../../shared/components';
 

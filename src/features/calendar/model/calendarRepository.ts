@@ -1,18 +1,19 @@
+//other
 import { calendarDb } from './calendarDb'
-import type { CalendarEventEntity } from './types'
+import type { ICalendarEventEntity } from './types'
 
 export const calendarRepository = {
-  getEvents: async (): Promise<CalendarEventEntity[]> => {
+  getEvents: async (): Promise<ICalendarEventEntity[]> => {
     return calendarDb.events.orderBy('start').toArray()
   },
 
-  createEvent: async (event: CalendarEventEntity): Promise<void> => {
+  createEvent: async (event: ICalendarEventEntity): Promise<void> => {
     await calendarDb.events.add(event)
   },
 
   updateEvent: async (
     id: string,
-    changes: Partial<CalendarEventEntity>,
+    changes: Partial<ICalendarEventEntity>,
   ): Promise<number> => {
     return calendarDb.events.update(id, {
       ...changes,

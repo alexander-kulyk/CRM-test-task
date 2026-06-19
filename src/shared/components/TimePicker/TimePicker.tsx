@@ -1,16 +1,18 @@
-import type React from 'react'
+//core
 import { TimePicker as MuiTimePicker } from '@mui/x-date-pickers/TimePicker'
 import type { Dayjs } from 'dayjs'
+import type React from 'react'
+//other
 import * as S from './styled'
 
-export interface TimePickerProps {
+export interface ITimePickerProps {
   label: string
   value: Dayjs | null
   onChange: (value: Dayjs | null) => void
   error?: string
 }
 
-export const TimePicker: React.FC<TimePickerProps> = ({
+export const TimePicker: React.FC<ITimePickerProps> = ({
   label,
   value,
   onChange,

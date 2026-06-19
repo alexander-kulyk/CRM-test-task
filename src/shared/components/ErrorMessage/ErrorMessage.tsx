@@ -1,9 +1,17 @@
+//core
 import type React from 'react'
+//other
 import { useErrorContext } from '../../context'
 import * as S from './styled'
 
 export const ErrorMessage: React.FC = () => {
   const { errors, removeError } = useErrorContext()
+
+  const handleRemoveError = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ): void => {
+    removeError(event.currentTarget.value)
+  }
 
   if (errors.length === 0) {
     return null
@@ -35,7 +43,11 @@ export const ErrorMessage: React.FC = () => {
           <S.Title>Something wrong</S.Title>
           <S.Message>{error.message}</S.Message>
 
-          <S.OkButton type="button" onClick={() => removeError(error.id)}>
+          <S.OkButton
+            type="button"
+            value={error.id}
+            onClick={handleRemoveError}
+          >
             Ok
           </S.OkButton>
         </S.Card>

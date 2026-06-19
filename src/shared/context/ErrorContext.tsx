@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components -- ErrorContext colocates the context, its ErrorProvider, and the useErrorContext hook by design; this module is not a Fast Refresh component boundary. */
+//core
 import {
   createContext,
   useCallback,
@@ -9,23 +10,23 @@ import {
 } from 'react'
 import type React from 'react'
 
-export interface AppError {
+export interface IAppError {
   id: string
   message: string
   occurredAt: string
 }
 
-interface ErrorContextValue {
-  errors: AppError[]
+interface IErrorContextValue {
+  errors: IAppError[]
   addError: (message: string) => void
   removeError: (id: string) => void
   clearErrors: () => void
 }
 
-const ErrorContext = createContext<ErrorContextValue | null>(null)
+const ErrorContext = createContext<IErrorContextValue | null>(null)
 
 export const ErrorProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [errors, setErrors] = useState<AppError[]>([])
+  const [errors, setErrors] = useState<IAppError[]>([])
 
   const addError = useCallback((message: string) => {
     setErrors((currentErrors) => [
@@ -48,7 +49,7 @@ export const ErrorProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setErrors([])
   }, [])
 
-  const value = useMemo(
+  const value = useMemo<IErrorContextValue>(
     () => ({
       errors,
       addError,
@@ -61,7 +62,7 @@ export const ErrorProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>
 }
 
-export const useErrorContext = (): ErrorContextValue => {
+export const useErrorContext = (): IErrorContextValue => {
   const context = useContext(ErrorContext)
 
   if (!context) {

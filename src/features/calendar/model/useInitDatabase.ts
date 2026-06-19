@@ -1,12 +1,14 @@
+//core
 import { useEffect, useState } from 'react'
+//other
 import { useErrorContext } from '../../../shared/context'
 import { calendarDb } from './calendarDb'
 
-export interface UseInitDatabaseResult {
+export interface IUseInitDatabaseResult {
   isInitializing: boolean
 }
 
-export const useInitDatabase = (): UseInitDatabaseResult => {
+export const useInitDatabase = (): IUseInitDatabaseResult => {
   const [isInitializing, setIsInitializing] = useState(true)
   const { addError } = useErrorContext()
 

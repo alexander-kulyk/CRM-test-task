@@ -1,23 +1,24 @@
+//core
 import type { Dayjs } from 'dayjs'
 
 export type EventPopupMode = 'create' | 'edit'
 
-export interface EventFormValues {
+export interface IEventFormValues {
   title: string
   date: Dayjs | null
   time: Dayjs | null
   color: string
 }
 
-export interface EventPopupProps {
+export interface IEventPopupProps {
   isOpen: boolean
   mode: EventPopupMode
-  initialValues: EventFormValues
+  initialValues: IEventFormValues
   eventId?: string
   isProcessing: boolean
   referenceEl: HTMLElement | null
   onClose: () => void
-  onApply: (values: EventFormValues) => Promise<void>
-  onSave: (eventId: string, values: EventFormValues) => Promise<void>
+  onApply: (values: IEventFormValues) => Promise<void>
+  onSave: (eventId: string, values: IEventFormValues) => Promise<void>
   onDelete: (eventId: string) => Promise<void>
 }

@@ -1,8 +1,10 @@
+//core
 import Dexie, { type EntityTable } from 'dexie'
-import type { CalendarEventEntity } from './types'
+//other
+import type { ICalendarEventEntity } from './types'
 
 export const calendarDb = new Dexie('calendar-db') as Dexie & {
-  events: EntityTable<CalendarEventEntity, 'id'>
+  events: EntityTable<ICalendarEventEntity, 'id'>
 }
 
 calendarDb.version(1).stores({

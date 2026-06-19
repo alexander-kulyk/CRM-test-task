@@ -1,5 +1,7 @@
+//core
 import type React from 'react'
 import { createPortal } from 'react-dom'
+//other
 import * as S from './styled'
 
 export interface IModalProps {

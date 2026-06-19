@@ -1,4 +1,4 @@
-export interface CalendarEventEntity {
+export interface ICalendarEventEntity {
   id: string
   title: string
   start: string

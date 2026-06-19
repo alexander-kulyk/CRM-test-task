@@ -1,3 +1,4 @@
+//core
 import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -7,26 +8,27 @@ import {
   type UseFormHandleSubmit,
   useForm,
 } from 'react-hook-form';
+//other
 import { eventFormSchema } from '../eventFormSchema';
-import type { EventFormValues } from '../types';
+import type { IEventFormValues } from '../types';
 
-interface UseEventFormParams {
-  initialValues: EventFormValues;
+interface IUseEventFormParams {
+  initialValues: IEventFormValues;
   isOpen: boolean;
   isProcessing: boolean;
   mode: 'create' | 'edit';
   eventId?: string;
-  onApply: (values: EventFormValues) => Promise<void>;
-  onSave: (eventId: string, values: EventFormValues) => Promise<void>;
+  onApply: (values: IEventFormValues) => Promise<void>;
+  onSave: (eventId: string, values: IEventFormValues) => Promise<void>;
 }
 
-interface UseEventFormReturn {
-  control: Control<EventFormValues>;
-  handleSubmit: UseFormHandleSubmit<EventFormValues>;
+interface IUseEventFormReturn {
+  control: Control<IEventFormValues>;
+  handleSubmit: UseFormHandleSubmit<IEventFormValues>;
   isSubmitDisabled: boolean;
   submitButtonText: string;
   modalTitle: string;
-  handleFormSubmit: SubmitHandler<EventFormValues>;
+  handleFormSubmit: SubmitHandler<IEventFormValues>;
 }
 
 export const useEventForm = ({
@@ -37,14 +39,14 @@ export const useEventForm = ({
   eventId,
   onApply,
   onSave,
-}: UseEventFormParams): UseEventFormReturn => {
+}: IUseEventFormParams): IUseEventFormReturn => {
   const {
     control,
     handleSubmit,
     reset,
     formState: { isDirty, isValid },
-  } = useForm<EventFormValues>({
-    resolver: zodResolver(eventFormSchema) as Resolver<EventFormValues>,
+  } = useForm<IEventFormValues>({
+    resolver: zodResolver(eventFormSchema) as Resolver<IEventFormValues>,
     mode: 'onChange',
     defaultValues: initialValues,
   });
@@ -60,7 +62,7 @@ export const useEventForm = ({
   const submitButtonText = mode === 'create' ? 'Apply' : 'Save';
   const modalTitle = mode === 'create' ? 'Create event' : 'Edit event';
 
-  const handleFormSubmit: SubmitHandler<EventFormValues> = async (
+  const handleFormSubmit: SubmitHandler<IEventFormValues> = async (
     values,
   ): Promise<void> => {
     if (mode === 'create') {

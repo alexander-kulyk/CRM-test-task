@@ -1,3 +1,4 @@
+//core
 import { z } from 'zod'
 
 export const leadFormSchema = z.object({

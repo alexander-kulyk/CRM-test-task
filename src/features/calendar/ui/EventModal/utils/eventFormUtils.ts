@@ -1,6 +1,8 @@
+//core
 import type { Dayjs } from 'dayjs'
-import type { CalendarEventEntity } from '../../../model'
-import type { EventFormValues } from '../types'
+//other
+import type { ICalendarEventEntity } from '../../../model'
+import type { IEventFormValues } from '../types'
 
 export const combineDateAndTime = (date: Dayjs, time: Dayjs): string => {
   return date
@@ -12,8 +14,8 @@ export const combineDateAndTime = (date: Dayjs, time: Dayjs): string => {
 }
 
 export const mapFormValuesToCreateEvent = (
-  values: EventFormValues,
-): CalendarEventEntity => {
+  values: IEventFormValues,
+): ICalendarEventEntity => {
   const start = combineDateAndTime(values.date!, values.time!)
   const now = new Date().toISOString()
 
@@ -30,8 +32,8 @@ export const mapFormValuesToCreateEvent = (
 }
 
 export const mapFormValuesToEventChanges = (
-  values: EventFormValues,
-): Partial<CalendarEventEntity> => {
+  values: IEventFormValues,
+): Partial<ICalendarEventEntity> => {
   const start = combineDateAndTime(values.date!, values.time!)
   const now = new Date().toISOString()
 

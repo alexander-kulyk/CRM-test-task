@@ -1,5 +1,8 @@
+//core
 import type React from 'react'
+//components
 import { SectionHeading, StatusPill } from '../../../shared/components'
+//other
 import { LEAD_STATUS_OPTIONS } from '../config'
 import { useLeadForm } from '../model'
 import * as S from './styled'

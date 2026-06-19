@@ -1,7 +1,9 @@
-import { useCallback, useState } from 'react';
+//core
 import type { EventClickArg, EventDropArg } from '@fullcalendar/core';
 import type { DateClickArg } from '@fullcalendar/interaction';
 import dayjs from 'dayjs';
+import { useCallback, useState } from 'react';
+//other
 import {
   DEFAULT_EVENT_COLOR,
   DEFAULT_EVENT_HOUR,
@@ -9,19 +11,19 @@ import {
   EMPTY_EVENT_FORM_VALUES,
   mapFormValuesToCreateEvent,
   mapFormValuesToEventChanges,
-  type EventFormValues,
   type EventPopupMode,
+  type IEventFormValues,
 } from '../../EventModal';
 
 interface IEventModalState {
   isOpen: boolean;
   mode: EventPopupMode;
   eventId?: string;
-  initialValues: EventFormValues;
+  initialValues: IEventFormValues;
   anchorEl: HTMLElement | null;
 }
 
-interface UseEventFlowParams {
+interface IUseEventFlowParams {
   createEvent: (
     event: ReturnType<typeof mapFormValuesToCreateEvent>,
   ) => Promise<boolean>;
@@ -33,13 +35,13 @@ interface UseEventFlowParams {
   deleteEvent: (id: string) => Promise<boolean>;
 }
 
-interface UseEventFlowReturn {
+interface IUseEventFlowReturn {
   modalState: IEventModalState;
   closeModal: () => void;
   handleDateClick: (info: DateClickArg) => void;
   handleEventClick: (info: EventClickArg) => void;
-  handleApply: (values: EventFormValues) => Promise<void>;
-  handleSave: (eventId: string, values: EventFormValues) => Promise<void>;
+  handleApply: (values: IEventFormValues) => Promise<void>;
+  handleSave: (eventId: string, values: IEventFormValues) => Promise<void>;
   handleDelete: (eventId: string) => Promise<void>;
   handleEventDrop: (dropInfo: EventDropArg) => Promise<void>;
 }
@@ -56,7 +58,7 @@ export const useEventFlow = ({
   updateEvent,
   moveEvent,
   deleteEvent,
-}: UseEventFlowParams): UseEventFlowReturn => {
+}: IUseEventFlowParams): IUseEventFlowReturn => {
   const [modalState, setModalState] =
     useState<IEventModalState>(CLOSED_MODAL_STATE);
 
@@ -108,7 +110,7 @@ export const useEventFlow = ({
   }, []);
 
   const handleApply = useCallback(
-    async (values: EventFormValues): Promise<void> => {
+    async (values: IEventFormValues): Promise<void> => {
       const event = mapFormValuesToCreateEvent(values);
       const isCreated = await createEvent(event);
 
@@ -120,7 +122,7 @@ export const useEventFlow = ({
   );
 
   const handleSave = useCallback(
-    async (eventId: string, values: EventFormValues): Promise<void> => {
+    async (eventId: string, values: IEventFormValues): Promise<void> => {
       const changes = mapFormValuesToEventChanges(values);
       const isUpdated = await updateEvent(eventId, changes);
 

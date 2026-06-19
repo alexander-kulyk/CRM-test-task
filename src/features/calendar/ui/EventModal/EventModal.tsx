@@ -1,18 +1,21 @@
-import type React from 'react';
+//core
 import { FloatingArrow, FloatingPortal } from '@floating-ui/react';
+import type React from 'react';
 import { Controller } from 'react-hook-form';
 import { useTheme } from 'styled-components';
+//components
 import {
   ColorPicker,
   DatePicker,
   Input,
   TimePicker,
 } from '../../../../shared/components';
+//other
 import { ARROW_HEIGHT, useEventForm, usePopoverFloating } from './hooks';
 import * as S from './styled';
-import type { EventPopupProps } from './types';
+import type { IEventPopupProps } from './types';
 
-export const EventPopup: React.FC<EventPopupProps> = ({
+export const EventPopup: React.FC<IEventPopupProps> = ({
   isOpen,
   mode,
   initialValues,

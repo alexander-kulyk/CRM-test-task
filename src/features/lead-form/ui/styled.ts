@@ -1,4 +1,6 @@
+//core
 import styled from 'styled-components'
+//components
 import { Panel } from '../../../shared/components'
 
 export const FormPanel = styled(Panel)`

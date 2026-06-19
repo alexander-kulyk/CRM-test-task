@@ -1,14 +1,16 @@
+//core
 import type React from 'react'
 import { HexColorPicker } from 'react-colorful'
+//other
 import * as S from './styled'
 
-export interface ColorPickerProps {
+export interface IColorPickerProps {
   label: string
   value: string
   onChange: (value: string) => void
 }
 
-export const ColorPicker: React.FC<ColorPickerProps> = ({
+export const ColorPicker: React.FC<IColorPickerProps> = ({
   label,
   value,
   onChange,

@@ -1,4 +1,6 @@
+//core
 import type React from 'react'
+//other
 import type { INavItem } from './constants'
 import * as S from './styled'
 

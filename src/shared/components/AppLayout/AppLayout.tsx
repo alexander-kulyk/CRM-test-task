@@ -1,7 +1,10 @@
+//core
 import type React from 'react'
 import { Outlet } from 'react-router'
-import { NAV_ITEMS } from './constants'
+//components
 import { SidebarNavItem } from './SidebarNavItem'
+//other
+import { NAV_ITEMS } from './constants'
 import * as S from './styled'
 
 export const AppLayout: React.FC = () => (

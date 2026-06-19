@@ -1,10 +1,10 @@
-import type React from 'react';
-import type { PropsWithChildren } from 'react';
+//core
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import React, { type PropsWithChildren } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../styles/GlobalStyle';
-import { theme } from '../styles/theme';
+//other
+import { GlobalStyle, theme } from '../styles';
 
 export const AppProviders: React.FC<PropsWithChildren> = ({ children }) => (
   <ThemeProvider theme={theme}>

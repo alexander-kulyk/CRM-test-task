@@ -1,5 +1,4 @@
-import { useCallback, useState } from 'react';
-import type { CSSProperties } from 'react';
+//core
 import {
   arrow,
   autoUpdate,
@@ -10,19 +9,21 @@ import {
   useFloating,
   useInteractions,
   useTransitionStyles,
+  type FloatingContext,
+  type ReferenceType,
 } from '@floating-ui/react';
-import type { FloatingContext, ReferenceType } from '@floating-ui/react';
+import { useCallback, useState, type CSSProperties } from 'react';
 
 export const ARROW_HEIGHT = 8;
 const POPOVER_GAP = 8;
 
-interface UsePopoverFloatingParams {
+interface IUsePopoverFloatingParams {
   isOpen: boolean;
   referenceEl: HTMLElement | null;
   onClose: () => void;
 }
 
-interface UsePopoverFloatingReturn {
+interface IUsePopoverFloatingReturn {
   setFloatingRef: (node: HTMLElement | null) => void;
   floatingStyles: CSSProperties;
   transitionStyles: CSSProperties;
@@ -38,7 +39,7 @@ export const usePopoverFloating = ({
   isOpen,
   referenceEl,
   onClose,
-}: UsePopoverFloatingParams): UsePopoverFloatingReturn => {
+}: IUsePopoverFloatingParams): IUsePopoverFloatingReturn => {
   const [arrowEl, setArrowEl] = useState<SVGSVGElement | null>(null);
 
   const { refs, floatingStyles, context } = useFloating({

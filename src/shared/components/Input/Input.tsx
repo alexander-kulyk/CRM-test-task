@@ -1,8 +1,9 @@
-import type React from 'react'
-import type { InputHTMLAttributes } from 'react'
+//core
+import React, { type InputHTMLAttributes } from 'react'
+//other
 import * as S from './styled'
 
-export interface InputProps
+export interface IInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string
   value: string
@@ -12,7 +13,7 @@ export interface InputProps
   error?: string
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input: React.FC<IInputProps> = ({
   label,
   value,
   onChange,
