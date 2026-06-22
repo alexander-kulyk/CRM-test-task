@@ -1,6 +1,7 @@
 //core
 import { FloatingArrow, FloatingPortal } from '@floating-ui/react';
 import type React from 'react';
+import { useEffect, useRef } from 'react';
 import { Controller } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 //components
@@ -42,6 +43,7 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
   onDelete,
 }) => {
   const theme = useTheme();
+  const titleInputRef = useRef<HTMLInputElement>(null);
 
   const {
     setFloatingRef,
@@ -75,6 +77,12 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
   });
 
   const isDeletable = mode === 'edit' && Boolean(eventId);
+
+  useEffect(() => {
+    if (isMounted) {
+      titleInputRef.current?.focus({ preventScroll: true });
+    }
+  }, [isMounted]);
 
   const handleDeleteClick = (): void => {
     if (eventId) {
@@ -130,7 +138,7 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
                 onChange={field.onChange}
                 maxLength={30}
                 error={fieldState.error?.message}
-                autoFocus
+                inputRef={titleInputRef}
               />
             )}
           />

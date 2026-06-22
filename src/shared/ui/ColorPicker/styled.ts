@@ -14,7 +14,7 @@ export const LabelText = styled.span`
 
 export const PickerWrapper = styled.div`
   .react-colorful {
-    height: 132px;
+    height: 92px;
     width: 100%;
   }
 
@@ -26,13 +26,13 @@ export const PickerWrapper = styled.div`
 
   .react-colorful__hue {
     border-radius: 0 0 ${({ theme }) => theme.radii.md} ${({ theme }) => theme.radii.md};
-    height: 14px;
+    height: 12px;
   }
 
   .react-colorful__pointer {
     border: 2px solid ${({ theme }) => theme.colors.white};
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
   }
 `
 

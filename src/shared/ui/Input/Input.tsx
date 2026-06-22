@@ -11,6 +11,7 @@ export interface IInputProps
   minLength?: number
   maxLength?: number
   error?: string
+  inputRef?: React.Ref<HTMLInputElement>
 }
 
 export const Input: React.FC<IInputProps> = ({
@@ -20,6 +21,7 @@ export const Input: React.FC<IInputProps> = ({
   minLength,
   maxLength,
   error,
+  inputRef,
   ...inputProps
 }) => {
   const isTooLong = maxLength !== undefined && value.length > maxLength
@@ -43,6 +45,7 @@ export const Input: React.FC<IInputProps> = ({
       <S.LabelText>{label}</S.LabelText>
       <S.Control
         {...inputProps}
+        ref={inputRef}
         value={value}
         onChange={handleChange}
         $hasError={hasError}
