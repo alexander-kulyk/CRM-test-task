@@ -9,7 +9,7 @@ import {
   DatePicker,
   Input,
   TimePicker,
-} from '../../../../shared/components';
+} from '../../../../shared/ui';
 //other
 import { ARROW_HEIGHT, useEventForm, usePopoverFloating } from './hooks';
 import * as S from './styled';

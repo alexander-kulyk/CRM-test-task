@@ -8,7 +8,7 @@ import {
   Panel,
   SectionHeading,
   StatusPill,
-} from '../../../shared/components'
+} from '../../../shared/ui'
 //other
 import { EVENT_TREND } from '../config'
 import { EventAnalyticsTable } from './EventAnalyticsTable'

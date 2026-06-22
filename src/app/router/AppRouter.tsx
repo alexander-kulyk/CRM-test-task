@@ -3,7 +3,7 @@ import type React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 //components
 import { AnalyticsPage, CalendarPage, UsersPage } from '../../pages';
-import { AppLayout } from '../../shared/components';
+import { AppLayout } from '../../shared/ui';
 
 export const AppRouter: React.FC = () => (
   <BrowserRouter>

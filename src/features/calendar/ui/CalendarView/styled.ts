@@ -1,7 +1,7 @@
 //core
 import styled from 'styled-components'
 //components
-import { Panel } from '../../../../shared/components'
+import { Panel } from '../../../../shared/ui'
 
 export const CalendarPanel = styled(Panel)`
   overflow-x: auto;

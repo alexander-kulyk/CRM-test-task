@@ -8,7 +8,7 @@ import {
   Panel,
   SectionHeading,
   StatusPill,
-} from '../../../shared/components'
+} from '../../../shared/ui'
 //other
 import { UsersTable } from './UsersTable'
 

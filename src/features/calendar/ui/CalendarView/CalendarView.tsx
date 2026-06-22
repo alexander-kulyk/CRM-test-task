@@ -10,7 +10,7 @@ import {
   PageHeader,
   PageStack,
   Eyebrow,
-} from '../../../../shared/components';
+} from '../../../../shared/ui';
 import { EventPopup } from '../EventModal';
 //other
 import {

@@ -6,7 +6,7 @@ import {
   CalendarView,
   useInitDatabase,
 } from '../../../features/calendar'
-import { ErrorBoundary } from '../../../shared/components'
+import { ErrorBoundary } from '../../../shared/ui'
 
 export const CalendarPage: React.FC = () => {
   const { isInitializing } = useInitDatabase()
