@@ -9,7 +9,6 @@ import { AppRouter } from './router';
 const App: React.FC = () => (
   <AppProviders>
     <ErrorMessage />
-
     <ErrorBoundary>
       <AppRouter />
     </ErrorBoundary>

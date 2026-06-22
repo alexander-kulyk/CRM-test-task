@@ -5,8 +5,11 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { AnalyticsPage, CalendarPage, UsersPage } from '../../pages';
 import { AppLayout } from '../../shared/ui';
 
+const basename =
+  import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL;
+
 export const AppRouter: React.FC = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={basename}>
     <Routes>
       <Route element={<AppLayout />}>
         <Route index element={<CalendarPage />} />
