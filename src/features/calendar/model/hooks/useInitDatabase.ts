@@ -1,8 +1,8 @@
 //core
 import { useEffect, useState } from 'react'
 //other
-import { useErrorContext } from '../../../shared/context'
-import { calendarDb } from './calendarDb'
+import { useErrorContext } from '../../../../shared/context'
+import { calendarDb } from '../../api'
 
 export interface IUseInitDatabaseResult {
   isInitializing: boolean

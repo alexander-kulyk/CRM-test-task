@@ -1,9 +1,9 @@
 //core
 import { useLiveQuery } from 'dexie-react-hooks'
 //other
-import { useErrorContext } from '../../../shared/context'
-import { calendarRepository } from './calendarRepository'
-import type { ICalendarEventEntity } from './types'
+import { useErrorContext } from '../../../../shared/context'
+import { calendarRepository } from '../../api'
+import type { ICalendarEventEntity } from '../types'
 
 export const useCalendarEvents = (): ICalendarEventEntity[] => {
   const { addError } = useErrorContext()

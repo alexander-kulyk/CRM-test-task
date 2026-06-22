@@ -2,7 +2,7 @@
 import type { Dayjs } from 'dayjs'
 //other
 import type { IEventFormValues } from './eventFormTypes'
-import type { ICalendarEventEntity } from './types'
+import type { ICalendarEventEntity } from '../types'
 
 export const combineDateAndTime = (date: Dayjs, time: Dayjs): string => {
   return date

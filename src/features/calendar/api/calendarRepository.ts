@@ -1,6 +1,6 @@
 //other
 import { calendarDb } from './calendarDb'
-import type { ICalendarEventEntity } from './types'
+import type { ICalendarEventEntity } from '../model'
 
 export const calendarRepository = {
   getEvents: async (): Promise<ICalendarEventEntity[]> => {
