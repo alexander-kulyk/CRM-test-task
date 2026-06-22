@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 //other
 import {
   DEFAULT_EVENT_COLOR,
+  DEFAULT_EVENT_DURATION_HOURS,
   DEFAULT_EVENT_HOUR,
   DEFAULT_EVENT_MINUTE,
   EMPTY_EVENT_FORM_VALUES,
@@ -68,9 +69,10 @@ export const useEventFlow = ({
 
   const handleDateClick = useCallback((info: DateClickArg): void => {
     const clickedDate = dayjs(info.date);
-    const selectedTime = info.allDay
+    const startTime = info.allDay
       ? clickedDate.hour(DEFAULT_EVENT_HOUR).minute(DEFAULT_EVENT_MINUTE)
       : clickedDate;
+    const endTime = startTime.add(DEFAULT_EVENT_DURATION_HOURS, 'hour');
 
     setModalState({
       isOpen: true,
@@ -79,7 +81,8 @@ export const useEventFlow = ({
       initialValues: {
         title: '',
         date: clickedDate,
-        time: selectedTime,
+        startTime,
+        endTime,
         color: DEFAULT_EVENT_COLOR,
       },
     });
@@ -93,6 +96,9 @@ export const useEventFlow = ({
     }
 
     const eventStart = dayjs(info.event.start);
+    const eventEnd = info.event.end
+      ? dayjs(info.event.end)
+      : eventStart.add(DEFAULT_EVENT_DURATION_HOURS, 'hour');
     const eventColor = info.event.backgroundColor || DEFAULT_EVENT_COLOR;
 
     setModalState({
@@ -103,7 +109,8 @@ export const useEventFlow = ({
       initialValues: {
         title: info.event.title,
         date: eventStart,
-        time: eventStart,
+        startTime: eventStart,
+        endTime: eventEnd,
         color: eventColor,
       },
     });

@@ -16,13 +16,15 @@ export const combineDateAndTime = (date: Dayjs, time: Dayjs): string => {
 export const mapFormValuesToCreateEvent = (
   values: IEventFormValues,
 ): ICalendarEventEntity => {
-  const start = combineDateAndTime(values.date!, values.time!)
+  const start = combineDateAndTime(values.date!, values.startTime!)
+  const end = combineDateAndTime(values.date!, values.endTime!)
   const now = new Date().toISOString()
 
   return {
     id: crypto.randomUUID(),
     title: values.title.trim(),
     start,
+    end,
     allDay: false,
     backgroundColor: values.color,
     borderColor: values.color,
@@ -34,12 +36,14 @@ export const mapFormValuesToCreateEvent = (
 export const mapFormValuesToEventChanges = (
   values: IEventFormValues,
 ): Partial<ICalendarEventEntity> => {
-  const start = combineDateAndTime(values.date!, values.time!)
+  const start = combineDateAndTime(values.date!, values.startTime!)
+  const end = combineDateAndTime(values.date!, values.endTime!)
   const now = new Date().toISOString()
 
   return {
     title: values.title.trim(),
     start,
+    end,
     allDay: false,
     backgroundColor: values.color,
     borderColor: values.color,

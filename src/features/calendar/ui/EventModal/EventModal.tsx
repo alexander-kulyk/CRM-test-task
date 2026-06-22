@@ -140,11 +140,24 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
           />
 
           <Controller
-            name='time'
+            name='startTime'
             control={control}
             render={({ field, fieldState }) => (
               <TimePicker
-                label='Time'
+                label='Start time'
+                value={field.value}
+                onChange={field.onChange}
+                error={fieldState.error?.message}
+              />
+            )}
+          />
+
+          <Controller
+            name='endTime'
+            control={control}
+            render={({ field, fieldState }) => (
+              <TimePicker
+                label='End time'
                 value={field.value}
                 onChange={field.onChange}
                 error={fieldState.error?.message}
