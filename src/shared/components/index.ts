@@ -5,6 +5,5 @@ export * from './DatePicker';
 export * from './TimePicker';
 export * from './AppLayout';
 export * from './Input';
-export * from './Modal';
 
 export * from './Page';

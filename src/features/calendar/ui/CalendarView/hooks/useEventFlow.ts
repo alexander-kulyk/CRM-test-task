@@ -13,7 +13,7 @@ import {
   mapFormValuesToEventChanges,
   type EventPopupMode,
   type IEventFormValues,
-} from '../../EventModal';
+} from '../../../model';
 
 interface IEventModalState {
   isOpen: boolean;

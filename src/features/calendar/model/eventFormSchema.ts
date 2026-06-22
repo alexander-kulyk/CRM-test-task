@@ -2,7 +2,7 @@
 import dayjs from 'dayjs'
 import { z } from 'zod'
 //other
-import type { IEventFormValues } from '../types'
+import type { IEventFormValues } from './eventFormTypes'
 
 export const eventFormSchema = z.object({
   title: z

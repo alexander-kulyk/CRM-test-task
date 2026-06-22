@@ -9,8 +9,7 @@ import {
   useForm,
 } from 'react-hook-form';
 //other
-import { eventFormSchema } from '../eventFormSchema';
-import type { IEventFormValues } from '../types';
+import { eventFormSchema, type IEventFormValues } from '../../../model';
 
 interface IUseEventFormParams {
   initialValues: IEventFormValues;

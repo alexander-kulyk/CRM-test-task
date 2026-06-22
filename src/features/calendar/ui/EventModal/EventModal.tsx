@@ -13,7 +13,20 @@ import {
 //other
 import { ARROW_HEIGHT, useEventForm, usePopoverFloating } from './hooks';
 import * as S from './styled';
-import type { IEventPopupProps } from './types';
+import type { EventPopupMode, IEventFormValues } from '../../model';
+
+interface IEventPopupProps {
+  isOpen: boolean;
+  mode: EventPopupMode;
+  initialValues: IEventFormValues;
+  eventId?: string;
+  isProcessing: boolean;
+  referenceEl: HTMLElement | null;
+  onClose: () => void;
+  onApply: (values: IEventFormValues) => Promise<void>;
+  onSave: (eventId: string, values: IEventFormValues) => Promise<void>;
+  onDelete: (eventId: string) => Promise<void>;
+}
 
 export const EventPopup: React.FC<IEventPopupProps> = ({
   isOpen,

@@ -1,8 +1,8 @@
 //core
 import type { Dayjs } from 'dayjs'
 //other
-import type { ICalendarEventEntity } from '../../../model'
-import type { IEventFormValues } from '../types'
+import type { IEventFormValues } from './eventFormTypes'
+import type { ICalendarEventEntity } from './types'
 
 export const combineDateAndTime = (date: Dayjs, time: Dayjs): string => {
   return date

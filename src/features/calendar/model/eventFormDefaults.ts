@@ -1,5 +1,5 @@
 //other
-import type { IEventFormValues } from '../types'
+import type { IEventFormValues } from './eventFormTypes'
 
 export const DEFAULT_EVENT_COLOR = '#007bff'
 export const DEFAULT_EVENT_HOUR = 9

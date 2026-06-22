@@ -1,2 +1,2 @@
-export * from './model'
-export * from './ui'
+export { CalendarView, CalendarPageLoader } from './ui'
+export { useInitDatabase } from './model'
