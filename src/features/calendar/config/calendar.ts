@@ -14,3 +14,8 @@ export const CALENDAR_HEADER_TOOLBAR = {
   center: 'title',
   right: 'dayGridMonth,timeGridWeek,timeGridDay',
 }
+
+export const DELETE_EVENT_CONFIRMATION = {
+  title: 'The event will be deleted.',
+  description: 'Are you sure you want to continue?',
+}

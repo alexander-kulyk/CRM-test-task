@@ -80,15 +80,6 @@ export const SidebarItem = styled.span`
   padding: 0 ${({ theme }) => theme.spacing.xl};
 `
 
-export const IconMark = styled.span`
-  border: 2px solid currentColor;
-  border-radius: ${({ theme }) => theme.radii.sm};
-  display: inline-block;
-  height: 14px;
-  opacity: 0.75;
-  width: 14px;
-`
-
 export const Content = styled.div`
   min-width: 0;
 `

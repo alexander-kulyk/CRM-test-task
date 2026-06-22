@@ -12,7 +12,6 @@ export const SidebarNavItem: React.FC<ISidebarNavItemProps> = ({ item }) => {
   if (!item.to) {
     return (
       <S.SidebarItem aria-disabled="true">
-        <S.IconMark aria-hidden="true" />
         {item.label}
       </S.SidebarItem>
     )
@@ -20,7 +19,6 @@ export const SidebarNavItem: React.FC<ISidebarNavItemProps> = ({ item }) => {
 
   return (
     <S.SidebarLink to={item.to} end={item.to === '/'}>
-      <S.IconMark aria-hidden="true" />
       {item.label}
     </S.SidebarLink>
   )

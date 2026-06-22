@@ -13,6 +13,7 @@ import {
 //other
 import { ARROW_HEIGHT, useEventForm, usePopoverFloating } from './hooks';
 import * as S from './styled';
+import { getFooter } from './utils';
 import type { EventPopupMode, IEventFormValues } from '../../model';
 
 interface IEventPopupProps {
@@ -25,7 +26,7 @@ interface IEventPopupProps {
   onClose: () => void;
   onApply: (values: IEventFormValues) => Promise<void>;
   onSave: (eventId: string, values: IEventFormValues) => Promise<void>;
-  onDelete: (eventId: string) => Promise<void>;
+  onDelete: (eventId: string) => void;
 }
 
 export const EventPopup: React.FC<IEventPopupProps> = ({
@@ -77,9 +78,17 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
 
   const handleDeleteClick = (): void => {
     if (eventId) {
-      void onDelete(eventId);
+      onDelete(eventId);
     }
   };
+
+  const footer = getFooter({
+    isDeletable,
+    isProcessing,
+    isSubmitDisabled,
+    submitButtonText,
+    onDeleteClick: handleDeleteClick,
+  });
 
   if (!isMounted || !referenceEl) {
     return null;
@@ -178,25 +187,7 @@ export const EventPopup: React.FC<IEventPopupProps> = ({
           />
         </S.Form>
 
-        <S.Footer>
-          {isDeletable && (
-            <S.DeleteButton
-              type='button'
-              onClick={handleDeleteClick}
-              disabled={isProcessing}
-            >
-              Delete
-            </S.DeleteButton>
-          )}
-
-          <S.SubmitButton
-            type='submit'
-            form='event-popup-form'
-            disabled={isSubmitDisabled}
-          >
-            {isProcessing ? 'Saving' : submitButtonText}
-          </S.SubmitButton>
-        </S.Footer>
+        {footer}
       </S.Popover>
     </FloatingPortal>
   );

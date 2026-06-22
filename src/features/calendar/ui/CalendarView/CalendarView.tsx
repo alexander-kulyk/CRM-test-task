@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import type React from 'react';
 //components
 import {
+  Confirmation,
   SectionHeading,
   PageHeader,
   PageStack,
@@ -12,7 +13,11 @@ import {
 } from '../../../../shared/components';
 import { EventPopup } from '../EventModal';
 //other
-import { CALENDAR_HEADER_TOOLBAR, CALENDAR_PLUGINS } from '../../config';
+import {
+  CALENDAR_HEADER_TOOLBAR,
+  CALENDAR_PLUGINS,
+  DELETE_EVENT_CONFIRMATION,
+} from '../../config';
 import { useCalendarActions, useCalendarEvents } from '../../model';
 import { mapEntityToEventInput } from '../../lib';
 import { useEventFlow } from './hooks';
@@ -30,7 +35,10 @@ export const CalendarView: React.FC = () => {
     handleEventClick,
     handleApply,
     handleSave,
-    handleDelete,
+    requestDelete,
+    confirmDelete,
+    cancelDelete,
+    isConfirmingDelete,
     handleEventDrop,
   } = useEventFlow({
     createEvent,
@@ -82,7 +90,18 @@ export const CalendarView: React.FC = () => {
         onClose={closeModal}
         onApply={handleApply}
         onSave={handleSave}
-        onDelete={handleDelete}
+        onDelete={requestDelete}
+      />
+
+      <Confirmation
+        isOpen={isConfirmingDelete}
+        title={DELETE_EVENT_CONFIRMATION.title}
+        description={DELETE_EVENT_CONFIRMATION.description}
+        confirmLabel='Confirm'
+        cancelLabel='Cancel'
+        isProcessing={isProcessing}
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
       />
     </PageStack>
   );

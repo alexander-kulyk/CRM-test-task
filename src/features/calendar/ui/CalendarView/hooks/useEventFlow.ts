@@ -43,7 +43,10 @@ interface IUseEventFlowReturn {
   handleEventClick: (info: EventClickArg) => void;
   handleApply: (values: IEventFormValues) => Promise<void>;
   handleSave: (eventId: string, values: IEventFormValues) => Promise<void>;
-  handleDelete: (eventId: string) => Promise<void>;
+  requestDelete: (eventId: string) => void;
+  confirmDelete: () => Promise<void>;
+  cancelDelete: () => void;
+  isConfirmingDelete: boolean;
   handleEventDrop: (dropInfo: EventDropArg) => Promise<void>;
 }
 
@@ -62,6 +65,9 @@ export const useEventFlow = ({
 }: IUseEventFlowParams): IUseEventFlowReturn => {
   const [modalState, setModalState] =
     useState<IEventModalState>(CLOSED_MODAL_STATE);
+  const [deleteCandidateId, setDeleteCandidateId] = useState<string | null>(
+    null,
+  );
 
   const closeModal = useCallback((): void => {
     setModalState(CLOSED_MODAL_STATE);
@@ -140,16 +146,29 @@ export const useEventFlow = ({
     [closeModal, updateEvent],
   );
 
-  const handleDelete = useCallback(
-    async (eventId: string): Promise<void> => {
-      const isDeleted = await deleteEvent(eventId);
-
-      if (isDeleted) {
-        closeModal();
-      }
+  const requestDelete = useCallback(
+    (eventId: string): void => {
+      setDeleteCandidateId(eventId);
+      closeModal();
     },
-    [closeModal, deleteEvent],
+    [closeModal],
   );
+
+  const cancelDelete = useCallback((): void => {
+    setDeleteCandidateId(null);
+  }, []);
+
+  const confirmDelete = useCallback(async (): Promise<void> => {
+    if (!deleteCandidateId) {
+      return;
+    }
+
+    const isDeleted = await deleteEvent(deleteCandidateId);
+
+    if (isDeleted) {
+      setDeleteCandidateId(null);
+    }
+  }, [deleteCandidateId, deleteEvent]);
 
   const handleEventDrop = useCallback(
     async (dropInfo: EventDropArg): Promise<void> => {
@@ -173,7 +192,10 @@ export const useEventFlow = ({
     handleEventClick,
     handleApply,
     handleSave,
-    handleDelete,
+    requestDelete,
+    confirmDelete,
+    cancelDelete,
+    isConfirmingDelete: deleteCandidateId !== null,
     handleEventDrop,
   };
 };
