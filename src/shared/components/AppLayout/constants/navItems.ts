@@ -4,6 +4,7 @@ export interface INavItem {
 }
 
 export const NAV_ITEMS: INavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Calendar', to: '/calendar' },
+  { label: 'Calendar', to: '/' },
+  { label: 'Analytics', to: '/analytics' },
+  { label: 'Users', to: '/users' },
 ];

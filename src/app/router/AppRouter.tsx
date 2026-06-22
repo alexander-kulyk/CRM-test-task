@@ -2,15 +2,16 @@
 import type React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 //components
-import { CalendarPage, HomePage } from '../../pages';
+import { AnalyticsPage, CalendarPage, UsersPage } from '../../pages';
 import { AppLayout } from '../../shared/components';
 
 export const AppRouter: React.FC = () => (
   <BrowserRouter>
     <Routes>
       <Route element={<AppLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path='calendar' element={<CalendarPage />} />
+        <Route index element={<CalendarPage />} />
+        <Route path='analytics' element={<AnalyticsPage />} />
+        <Route path='users' element={<UsersPage />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Route>
     </Routes>

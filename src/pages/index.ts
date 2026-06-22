@@ -1,2 +1,3 @@
 export * from './CalendarPage';
-export * from './HomePage';
+export * from './AnalyticsPage';
+export * from './UsersPage';
