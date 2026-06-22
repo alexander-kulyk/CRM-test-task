@@ -13,7 +13,7 @@ export const CalendarPanel = styled(Panel)`
     --fc-button-text-color: ${({ theme }) => theme.colors.text};
     --fc-button-hover-bg-color: ${({ theme }) => theme.colors.surfaceMuted};
     --fc-button-hover-border-color: ${({ theme }) => theme.colors.border};
-    --fc-button-active-bg-color: ${({ theme }) => theme.colors.surfaceMuted};
+    --fc-button-active-bg-color: ${({ theme }) => theme.colors.surface};
     --fc-button-active-border-color: ${({ theme }) => theme.colors.border};
     --fc-event-bg-color: ${({ theme }) => theme.colors.primary};
     --fc-event-border-color: ${({ theme }) => theme.colors.primary};
@@ -44,6 +44,14 @@ export const CalendarPanel = styled(Panel)`
     text-transform: capitalize;
   }
 
+  .fc-button:focus,
+  .fc-button-primary:focus,
+  .fc-button-primary:not(:disabled).fc-button-active:focus,
+  .fc-button-primary:not(:disabled):active:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
   .fc-button-primary:not(:disabled).fc-button-active,
   .fc-button-primary:not(:disabled):active {
     color: ${({ theme }) => theme.colors.primary};
@@ -57,6 +65,10 @@ export const CalendarPanel = styled(Panel)`
     text-transform: uppercase;
   }
 
+  .fc-daygrid-day {
+    cursor: pointer;
+  }
+
   .fc-daygrid-day-number {
     color: ${({ theme }) => theme.colors.text};
     font-weight: ${({ theme }) => theme.typography.weights.medium};
@@ -66,7 +78,7 @@ export const CalendarPanel = styled(Panel)`
   .fc-event {
     border-radius: ${({ theme }) => theme.radii.sm};
     box-shadow: 0 4px 10px rgba(59, 134, 255, 0.22);
-    cursor: grab;
+    cursor: default;
     font-size: ${({ theme }) => theme.typography.sizes.sm};
     font-weight: ${({ theme }) => theme.typography.weights.medium};
     padding: 4px 8px;

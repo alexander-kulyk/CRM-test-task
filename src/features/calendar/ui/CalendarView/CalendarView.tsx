@@ -62,6 +62,7 @@ export const CalendarView: React.FC = () => {
           initialView='dayGridMonth'
           headerToolbar={CALENDAR_HEADER_TOOLBAR}
           events={calendarEvents}
+          eventDisplay='block'
           height='auto'
           nowIndicator
           dateClick={handleDateClick}
